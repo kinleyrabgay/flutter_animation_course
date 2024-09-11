@@ -11,7 +11,6 @@ const defaultWidth = 100.0;
 
 class _Example4State extends State<Example4> {
   var _isZoomedIn = false;
-  var _buttonTitle = 'Zoom In';
   var _width = defaultWidth;
   var _curve =
       Curves.easeInOut; // Changed the curve to easeInOut for a smooth effect
@@ -23,19 +22,10 @@ class _Example4State extends State<Example4> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 370),
-              width: _width,
-              curve: _curve,
-              child: Image.network(
-                'https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png',
-              ),
-            ),
-            TextButton(
-              onPressed: () {
+            GestureDetector(
+              onTap: () {
                 setState(() {
                   _isZoomedIn = !_isZoomedIn;
-                  _buttonTitle = _isZoomedIn ? 'Zoom Out' : 'Zoom In';
                   _width = _isZoomedIn
                       ? MediaQuery.of(context).size.width
                       : defaultWidth;
@@ -46,8 +36,15 @@ class _Example4State extends State<Example4> {
                           .easeInOut; // Using the same smooth curve for both states
                 });
               },
-              child: Text(_buttonTitle),
-            )
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 370),
+                width: _width,
+                curve: _curve,
+                child: Image.network(
+                  'https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png',
+                ),
+              ),
+            ),
           ],
         ),
       ),
