@@ -27,7 +27,7 @@ class _Example4State extends State<Example4> {
                 setState(() {
                   _isZoomedIn = !_isZoomedIn;
                   _width = _isZoomedIn
-                      ? MediaQuery.of(context).size.width
+                      ? MediaQuery.of(context).size.width * 0.8
                       : defaultWidth;
 
                   _curve = _isZoomedIn
